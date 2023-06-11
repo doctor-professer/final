@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Palindrome Checker</title>
+  <style>
+    /* Add your CSS styles here */
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #b35555;
+      text-align: center;
+      margin-top: 150px;
+    }
+    
+    h1 {
+      color: #333;
+    }
+    
+    .input-field {
+      margin-bottom: 10px;
+    }
+    
+    .result-message {
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<nav>
+  <h2>Navigation</h2>
+  <a href="./index.html">Home</a><br>
+  <a href="./game.html">Game</a><br>
+  <a href="./palindrome.html">Palindrome</a><br>
+  <a href="./user_input.html">User Input/Validation</a><br>
+  <a href="./boards.html">Objectives/Boards Page</a><br>
+  <a href="./table.html">Table</a><br>
+</nav>
+
+<body>
+  <h1>Palindrome Checker</h1>
+  
+  <div id="inputSection">
+    <label for="wordInput">Enter a word or phrase:</label>
+    <input type="text" id="wordInput" class="input-field">
+    <button onclick="checkPalindrome()">Check</button>
+  </div>
+  
+  <div id="resultSection" style="display: none;">
+    <p id="resultMessage" class="result-message"></p>
+    <button onclick="reset()">Enter another word</button>
+  </div>
+  <audio src="Civil War Drummer -SoundBible.com-700036269.mp3" controls autoplay loop></audio>
+
+  <script>
+    // Function to check if a string is a palindrome
+    function isPalindrome(str) {
+      // Remove spaces and convert to lowercase
+      str = str.replace(/\s/g, '').toLowerCase();
+      
+      // Reverse the string
+      var reversedStr = str.split('').reverse().join('');
+      
+      // Check if the original and reversed strings are equal
+      return str === reversedStr;
+    }
+    
+    // Function to handle palindrome checking
+    function checkPalindrome() {
+      var wordInput = document.getElementById('wordInput');
+      var userInput = wordInput.value;
+      
+      // Check if the input is empty
+      if (userInput.trim() === '') {
+        displayResult("Invalid input. Please enter a word or phrase.", false);
+        return;
+      }
+      
+      // Check if the input is a palindrome
+      var isPalin = isPalindrome(userInput);
+      
+      // Display the result to the user
+      var resultMessage = isPalin ? "The input is a palindrome!" : "The input is not a palindrome.";
+      displayResult(resultMessage, true);
+    }
+    
+    // Function to display the result message
+    function displayResult(message, showInputSection) {
+      var inputSection = document.getElementById('inputSection');
+      var resultSection = document.getElementById('resultSection');
+      var resultMessage = document.getElementById('resultMessage');
+      
+      resultMessage.textContent = message;
+      
+      if (showInputSection) {
+        inputSection.style.display = 'none';
+        resultSection.style.display = 'block';
+      } else {
+        inputSection.style.display = 'block';
+        resultSection.style.display = 'none';
+      }
+    }
+    
+    // Function to reset the form and allow the user to enter another word
+    function reset() {
+      var wordInput = document.getElementById('wordInput');
+      var inputSection = document.getElementById('inputSection');
+      var resultSection = document.getElementById('resultSection');
+      
+      wordInput.value = '';
+      inputSection.style.display = 'block';
+      resultSection.style.display = 'none';
+    }
+  </script>
+</body>
+</html>

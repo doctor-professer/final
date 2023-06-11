@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Quarks Casino - Craps Game</title>
+  <script src="code.js"></script> <!-- Linking the JavaScript file -->
+  <style>
+    body {
+      text-align: center;
+      font-family: Arial, sans-serif;
+    }
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      margin-top: 20px;
+    }
+    #diceRolls {
+      font-size: 24px;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <h2>Navigation</h2>
+    <a href="./index.html">Home</a><br>
+    <a href="./game.html">Game</a><br>
+    <a href="./palindrome.html">Palindrome</a><br>
+    <a href="./user_input.html">User Input/Validation</a><br>
+    <a href="./boards.html">Objectives/Boards Page</a><br>
+    <a href="./table.html">Table</a><br>
+  </nav>
+
+  <h1>Welcome to Quarks Casino</h1>
+  <h2>Craps Game</h2>
+  <p id="result"></p> <!-- Output result will be displayed here -->
+  <div id="diceRolls"></div> <!-- Display the numbers rolled here -->
+
+  <button onclick="playGame()">Play Game</button> <!-- Button to start the game -->
+
+  <script>
+    function playGame() {
+      var die1 = Math.floor(Math.random() * 6) + 1; // Generate random number between 1 and 6
+      var die2 = Math.floor(Math.random() * 6) + 1; // Generate random number between 1 and 6
+
+      var sum = die1 + die2; // Calculate the sum
+
+      var result = document.getElementById("result"); // Get the result element
+      var diceRolls = document.getElementById("diceRolls"); // Get the diceRolls element
+
+      diceRolls.innerHTML = "You rolled: " + die1 + " and " + die2; // Display the numbers rolled
+
+      if (sum === 7 || sum === 11) {
+        result.innerHTML = "CRAPS - You lose!"; // Output if sum is 7 or 11
+      } else if (die1 === die2 && die1 % 2 === 0) {
+        result.innerHTML = "You win"; // Output if doubles and even
+      } else {
+        result.innerHTML = "You pushed"; // Output if none of the above conditions met
+      }
+    }
+  </script>
+</body>
+</html>
